@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 import { IHttpService } from './i_http.service';
 
@@ -13,5 +13,17 @@ export class HttpService implements IHttpService {
 
   public get<T>(url: string) {
     return this.instance.get<T>(url);
+  }
+
+  public post<T>({
+    path,
+    payload,
+    config = {},
+  }: {
+    path: string;
+    payload: T;
+    config?: AxiosRequestConfig;
+  }) {
+    return this.instance.post(path, payload, config);
   }
 }

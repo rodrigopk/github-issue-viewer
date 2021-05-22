@@ -1,4 +1,4 @@
-import { EnvironmentService } from '../../libs/config';
+import { EnvironmentService } from '../../../libs/config';
 
 export const useGetGithubAuthorizationUrl = (
   configService = EnvironmentService,

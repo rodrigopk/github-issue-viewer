@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Flex, Center, Text, Box, Button, Icons } from '../../../../libs/ui';
-import { useGetGithubAuthorizationUrl } from '../../../application/use_get_gituhb_authorization_url';
+import { useGetGithubAuthorizationUrl } from '../../application/use_get_gituhb_authorization_url';
 
 export const Signin: React.FC<{}> = () => {
   const { authorizationUrl } = useGetGithubAuthorizationUrl();
