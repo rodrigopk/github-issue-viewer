@@ -1,10 +1,16 @@
-# Getting Started with Create React App
+# Github Issue Viewer - Frontend
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `yarn dev`
+
+serve the built version of the app with a static server
+Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
+You must run `yarn build` first for it to work.
 
 ### `yarn start`
 
