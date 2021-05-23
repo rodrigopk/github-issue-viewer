@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { routeBuilders, useHistory } from '../../../../libs/router';
 
 import { Center, Flex, SimpleGrid, Spinner, Text } from '../../../../libs/ui';
 import { ErrorState } from '../../../shared/presentation/layouts';
@@ -24,6 +25,11 @@ const RepositoryCard: React.FC<{ repository: Repository }> = ({
   repository,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const history = useHistory();
+
+  const navigateToRepositoryIssues = () => {
+    history.push(routeBuilders.issues.root(`${repository.id}`));
+  };
 
   return (
     <Flex
@@ -35,6 +41,7 @@ const RepositoryCard: React.FC<{ repository: Repository }> = ({
       borderWidth="1px"
       borderRadius="lg"
       boxShadow={isHovered ? 'lg' : 'md'}
+      onClick={navigateToRepositoryIssues}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       cursor="pointer">

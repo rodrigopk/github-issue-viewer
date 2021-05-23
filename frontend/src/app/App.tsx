@@ -7,11 +7,15 @@ import { AuthenticatedRoute } from './authentication/presentation/components/aut
 import { Redirect } from './authentication/presentation/pages/redirect';
 import { AuthenticationContainer } from './authentication/contexts';
 import { Repositories } from './repositories/presentation/pages/repositories';
+import { Issues } from './issues/presentation/pages/issues';
 
 const App: React.FC<{}> = () => (
   <AuthenticationContainer>
     <Router>
       <Switch>
+        <AuthenticatedRoute path={appRoutes.repositories.issues.root}>
+          <Issues />
+        </AuthenticatedRoute>
         <AuthenticatedRoute path={appRoutes.repositories.root}>
           <Repositories />
         </AuthenticatedRoute>
