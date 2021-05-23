@@ -11,4 +11,6 @@ export {
 
 export { Icons } from './icons';
 
+export { Markdown } from './markdown';
+
 export { appTheme } from './theme';

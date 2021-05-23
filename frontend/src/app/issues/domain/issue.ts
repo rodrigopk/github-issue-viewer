@@ -20,4 +20,17 @@ export class Issue {
       new Date(dto.created_at),
     );
   }
+
+  public toJSON(): IssueDTO {
+    return {
+      id: this.id,
+      number: this.number,
+      title: this.title,
+      body: this.body,
+      user: {
+        login: this.author,
+      },
+      created_at: this.createdAt.toISOString(),
+    };
+  }
 }
