@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 
-import { Link, useHistory } from '../../../../libs/router';
+import { Link, useHistory, appRoutes } from '../../../../libs/router';
 import { Flex, Spinner, Text } from '../../../../libs/ui';
-import { appRoutes } from '../../../shared/navigation';
 import { useGetGithubCodeFromUrl } from '../../application/use_get_github_code_from_url';
 import { useSigninWithCode } from '../../application/use_signin_with_code';
 import { AuthenticationContainer, AuthenticationContext } from '../../contexts';
