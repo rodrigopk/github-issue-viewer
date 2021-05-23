@@ -4,7 +4,7 @@ export class EnvironmentService {
   }
 
   public static baseApiUrl() {
-    return process.env.REACT_APP_BASE_API_URL;
+    return `${process.env.REACT_APP_BASE_API_URL}/api`;
   }
 
   public static githubClientId() {
