@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { Link, useHistory } from '../../../../libs/router';
 import { Flex, Spinner, Text } from '../../../../libs/ui';
 import { appRoutes } from '../../../shared/navigation';
 import { useGetGithubCodeFromUrl } from '../../application/use_get_github_code_from_url';
 import { useSigninWithCode } from '../../application/use_signin_with_code';
+import { AuthenticationContainer, AuthenticationContext } from '../../contexts';
 
 const ErrorState: React.FC<{ error: Error }> = ({ error }) => (
   <Flex
@@ -53,7 +54,12 @@ const RedirectionMessage: React.FC<{}> = () => {
 
 const Content: React.FC<{}> = () => {
   const { code } = useGetGithubCodeFromUrl();
-  const { error, isError, isLoading } = useSigninWithCode(code);
+  const { accessToken, error, isError, isLoading } = useSigninWithCode(code);
+  const { setAccessToken } = useContext(AuthenticationContext);
+
+  if (accessToken && setAccessToken) {
+    setAccessToken(accessToken);
+  }
 
   if (isLoading) return <Spinner size="xl" />;
 
@@ -63,7 +69,9 @@ const Content: React.FC<{}> = () => {
 };
 
 export const Redirect: React.FC<{}> = () => (
-  <Flex direction="column" height="100vh" justify="center" align="center">
-    <Content />
-  </Flex>
+  <AuthenticationContainer>
+    <Flex direction="column" height="100vh" justify="center" align="center">
+      <Content />
+    </Flex>
+  </AuthenticationContainer>
 );

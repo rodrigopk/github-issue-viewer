@@ -16,7 +16,7 @@ export const useSigninWithCode = (
   );
 
   return {
-    acessToken: data,
+    accessToken: data,
     isLoading,
     isError,
     error,
