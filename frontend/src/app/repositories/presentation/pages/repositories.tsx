@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { routeBuilders, useHistory } from '../../../../libs/router';
 
 import { Center, Flex, SimpleGrid, Spinner, Text } from '../../../../libs/ui';
 import { ErrorState } from '../../../shared/presentation/layouts';
 import { useListUserRepositories } from '../../application/use_list_user_repositories';
+import { RepositoriesContainer, RepositoriesContext } from '../../contexts';
 import { Repository } from '../../domain';
 
 export const EmptyState: React.FC<{}> = () => (
@@ -57,7 +58,10 @@ const RepositoryCard: React.FC<{ repository: Repository }> = ({
 const RepositoryList: React.FC<{ repositories: Repository[] }> = ({
   repositories,
 }) => {
+  const { setRepositories } = useContext(RepositoriesContext);
+
   if (repositories.length === 0) return <EmptyState />;
+  if (setRepositories) setRepositories(repositories);
 
   return (
     <SimpleGrid columns={{ sm: 1, md: 3 }} spacingY={4} spacingX={2} p={2}>
@@ -85,5 +89,9 @@ export const Repositories: React.FC<{}> = () => {
       </Center>
     );
 
-  return <RepositoryList repositories={repositories as Repository[]} />;
+  return (
+    <RepositoriesContainer>
+      <RepositoryList repositories={repositories as Repository[]} />
+    </RepositoriesContainer>
+  );
 };

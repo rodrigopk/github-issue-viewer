@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { useQuery } from '../../../libs/query';
 import { AuthenticationContext } from '../../authentication/contexts';
 import { RepositoriesFacade } from '../infrastructure/repositories.facade';
-import { AccessTokenNotFoundError } from './access_token_not_found.error';
+import { AccessTokenNotFoundError } from '../../authentication/domain/access_token_not_found.error';
 
 export const useListUserRepositories = (facade = new RepositoriesFacade()) => {
   const { accessToken } = useContext(AuthenticationContext);
@@ -17,7 +17,6 @@ export const useListUserRepositories = (facade = new RepositoriesFacade()) => {
       }
     },
     {
-      retry: false,
       staleTime: Infinity,
     },
   );

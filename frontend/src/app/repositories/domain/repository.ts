@@ -18,4 +18,16 @@ export class Repository {
       dto.open_issues,
     );
   }
+
+  public toJSON(): RepositoryDTO {
+    return {
+      id: this.id,
+      name: this.name,
+      owner: {
+        login: this.owner,
+      },
+      description: this.description,
+      open_issues: this.issuesCount,
+    };
+  }
 }

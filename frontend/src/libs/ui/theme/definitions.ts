@@ -39,6 +39,11 @@ export const definitions = {
           fontSize: '1rem',
           lineHeight: '1.125rem',
         },
+        bold: {
+          fontSize: '1rem',
+          lineHeight: '1.125rem',
+          fontWeight: 700,
+        },
         caption: {
           fontSize: '0.875rem',
           lineHeight: '1rem',

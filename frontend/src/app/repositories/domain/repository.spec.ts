@@ -1,17 +1,17 @@
 import { Repository } from './repository';
 
+const dto = {
+  id: 1296269,
+  name: 'Hello-World',
+  owner: {
+    login: 'octocat',
+  },
+  description: 'This your first repo!',
+  open_issues: 1,
+};
+
 describe('create', () => {
   it('creates an instance of a repository', () => {
-    const dto = {
-      id: 1296269,
-      name: 'Hello-World',
-      owner: {
-        login: 'octocat',
-        id: 1,
-      },
-      description: 'This your first repo!',
-      open_issues: 1,
-    };
     const repo = Repository.create(dto);
 
     expect(repo).toBeInstanceOf(Repository);
@@ -24,5 +24,13 @@ describe('create', () => {
         issuesCount: dto.open_issues,
       }),
     );
+  });
+});
+
+describe('toJSON', () => {
+  it('returns the correct object', () => {
+    const repo = Repository.create(dto);
+
+    expect(repo.toJSON()).toEqual(dto);
   });
 });
