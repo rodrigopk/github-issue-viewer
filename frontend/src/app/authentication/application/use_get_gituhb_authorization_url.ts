@@ -1,11 +1,12 @@
-import { EnvironmentService } from '../../../libs/config';
+import { EnvironmentService, GithubService } from '../../../libs/config';
 
 export const useGetGithubAuthorizationUrl = (
-  configService = EnvironmentService,
+  envService = EnvironmentService,
+  githubService = GithubService,
 ) => {
-  const baseUrl = 'https://github.com/login/oauth/authorize';
+  const baseUrl = githubService.authorizationUrl();
   const scopes = 'repo';
-  const clientId = configService.githubClientId();
+  const clientId = envService.githubClientId();
 
   return {
     authorizationUrl: `${baseUrl}?client_id=${clientId}&scope=${scopes}`,

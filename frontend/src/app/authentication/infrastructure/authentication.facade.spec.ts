@@ -35,7 +35,7 @@ describe('AuthenticationFacade', () => {
         result = await facade.signin(code);
       });
 
-      it('makes an http request to list prizes', () => {
+      it('makes a http request to retrieve access token', () => {
         expect(mockHttpService.post).toHaveBeenCalledWith({
           path: 'http://localhost:3000/api/github/signin',
           payload: {
@@ -44,13 +44,13 @@ describe('AuthenticationFacade', () => {
         });
       });
 
-      it('returns the retrieved prizes as domain objects', () => {
+      it('returns the retrieved access token as a domain object', () => {
         expect(result).toBeInstanceOf(AccessToken);
         expect(result.value).toEqual(accessToken);
       });
     });
 
-    describe('given there was an error while fetching the prizes', () => {
+    describe('given there was an error while requesting the token', () => {
       it('rejects the promise', () => {
         const error = new Error('Connection error');
 

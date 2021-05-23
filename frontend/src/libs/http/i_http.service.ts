@@ -1,7 +1,10 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export interface IHttpService {
-  get: <T>(url: string) => Promise<AxiosResponse<T>>;
+  get: <R>(params: {
+    path: string;
+    config?: AxiosRequestConfig;
+  }) => Promise<AxiosResponse<R>>;
   post: <P, R>(params: {
     path: string;
     payload: P;

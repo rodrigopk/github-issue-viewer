@@ -1,7 +1,8 @@
 export {
+  ChakraProvider,
   Box,
   Flex,
-  ChakraProvider,
+  SimpleGrid,
   Center,
   Text,
   Spinner,

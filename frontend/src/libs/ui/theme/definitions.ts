@@ -18,18 +18,22 @@ export const definitions = {
         h1: {
           fontSize: '4rem',
           lineHeight: '4.125rem',
+          fontWeight: 700,
         },
         h3: {
           fontSize: '2rem',
           lineHeight: '2.125rem',
+          fontWeight: 700,
         },
         h5: {
           fontSize: '1.5rem',
           lineHeight: '1.675rem',
+          fontWeight: 700,
         },
         h6: {
           fontSize: '1.25rem',
           lineHeight: '1.375rem',
+          fontWeight: 700,
         },
         body: {
           fontSize: '1rem',

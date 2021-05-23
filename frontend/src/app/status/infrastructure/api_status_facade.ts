@@ -9,9 +9,9 @@ export class ApiStatusFacade {
 
   public async getStatus(): Promise<{ status: string }> {
     try {
-      const result = await this.httpService.get<{ status: string }>(
-        `${this.configService.baseApiUrl()}/health`,
-      );
+      const result = await this.httpService.get<{ status: string }>({
+        path: `${this.configService.baseApiUrl()}/health`,
+      });
 
       return { status: result.data.status };
     } catch (error) {

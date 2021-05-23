@@ -11,8 +11,14 @@ export class HttpService implements IHttpService {
     });
   }
 
-  public get<T>(url: string) {
-    return this.instance.get<T>(url);
+  public get<T>({
+    path,
+    config = {},
+  }: {
+    path: string;
+    config?: AxiosRequestConfig;
+  }) {
+    return this.instance.get<T>(path, config);
   }
 
   public post<T>({
