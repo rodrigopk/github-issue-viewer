@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
 
+import { Link, useHistory } from '../../../../libs/router';
 import { Flex, Spinner, Text } from '../../../../libs/ui';
 import { appRoutes } from '../../../shared/navigation';
 import { useGetGithubCodeFromUrl } from '../../application/use_get_github_code_from_url';
