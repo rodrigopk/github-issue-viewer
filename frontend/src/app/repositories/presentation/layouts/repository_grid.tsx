@@ -17,9 +17,11 @@ export const RepositoryGrid: React.FC<{ repositories: Repository[] }> = ({
 
   return (
     <SimpleGrid columns={{ sm: 1, md: 3 }} spacingY={4} spacingX={2} p={2}>
-      {repositories.map((repository) => (
-        <RepositoryCard key={repository.id} repository={repository} />
-      ))}
+      {repositories
+        .sort((repoA, repoB) => repoB.issuesCount - repoA.issuesCount)
+        .map((repository) => (
+          <RepositoryCard key={repository.id} repository={repository} />
+        ))}
     </SimpleGrid>
   );
 };
