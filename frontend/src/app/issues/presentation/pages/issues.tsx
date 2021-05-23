@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 
 import { appRoutes, useHistory, useParams } from '../../../../libs/router';
-import { Center, Spinner } from '../../../../libs/ui';
+import { Box, Center, Flex, Spinner } from '../../../../libs/ui';
 import { useGetRepositoryForId } from '../../../repositories/application/use_get_repository_for_id';
 import { RepositoriesContainer } from '../../../repositories/contexts';
 import { Repository } from '../../../repositories/domain';
@@ -9,7 +9,7 @@ import { ErrorState } from '../../../shared/presentation/layouts';
 import { useGetRepositoryIssues } from '../../application/use_get_repository_issues';
 import { IssuesContainer, IssuesContext } from '../../contexts';
 import { Issue } from '../../domain';
-import { IssuesGrid, Pagination } from '../layouts';
+import { IssuesGrid, ListBreadcrumbs, Pagination } from '../layouts';
 
 const RepositoryIssues: React.FC<{}> = () => {
   const history = useHistory();
@@ -43,14 +43,17 @@ const RepositoryIssues: React.FC<{}> = () => {
   if (setIssues && issues) setIssues(issues);
 
   return (
-    <>
-      <IssuesGrid issues={issues as Issue[]} />
-      <Pagination
-        numberOfItems={(repository as Repository).issuesCount}
-        page={page}
-        onUpdatePage={setPage}
-      />
-    </>
+    <Flex direction="column" p={8}>
+      <ListBreadcrumbs />
+      <Box mt={8}>
+        <IssuesGrid issues={issues as Issue[]} />
+        <Pagination
+          numberOfItems={(repository as Repository).issuesCount}
+          page={page}
+          onUpdatePage={setPage}
+        />
+      </Box>
+    </Flex>
   );
 };
 

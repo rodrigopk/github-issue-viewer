@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Center, Spinner } from '../../../../libs/ui';
+import { Box, Center, Flex, Spinner } from '../../../../libs/ui';
 import { ErrorState } from '../../../shared/presentation/layouts';
 import { useListUserRepositories } from '../../application/use_list_user_repositories';
 import { RepositoriesContainer } from '../../contexts';
 import { Repository } from '../../domain';
-import { RepositoryGrid } from '../layouts';
+import { RepositoryBreadcrumbs, RepositoryGrid } from '../layouts';
 
 export const Repositories: React.FC<{}> = () => {
   const { repositories, error, isError, isLoading } = useListUserRepositories();
@@ -26,7 +26,12 @@ export const Repositories: React.FC<{}> = () => {
 
   return (
     <RepositoriesContainer>
-      <RepositoryGrid repositories={repositories as Repository[]} />
+      <Flex direction="column" p={8}>
+        <RepositoryBreadcrumbs />
+        <Box mt={8}>
+          <RepositoryGrid repositories={repositories as Repository[]} />
+        </Box>
+      </Flex>
     </RepositoriesContainer>
   );
 };

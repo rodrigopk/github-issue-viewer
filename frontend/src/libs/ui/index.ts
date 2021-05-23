@@ -7,6 +7,9 @@ export {
   Text,
   Spinner,
   Button,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
 } from '@chakra-ui/react';
 
 export { Icons } from './icons';

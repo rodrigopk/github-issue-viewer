@@ -4,6 +4,7 @@ import { routeBuilders, useHistory, useParams } from '../../../../libs/router';
 import { Box, Flex, Markdown, Text } from '../../../../libs/ui';
 import { useGetIssueForId } from '../../application/use_get_issue_for_id';
 import { IssuesContainer } from '../../contexts';
+import { DetailBreadcrumbs } from '../layouts';
 
 const Content: React.FC<{}> = () => {
   const history = useHistory();
@@ -14,20 +15,23 @@ const Content: React.FC<{}> = () => {
     history.push(routeBuilders.issues.root(repoId));
   }
 
-  return (
+  return issue ? (
     <Flex direction="column" p={8}>
-      <Flex mb={4}>
-        <Text variant="h3">{`${issue?.title} (#${issue?.number})`}</Text>
+      <DetailBreadcrumbs issueNumber={issue.number} />
+      <Flex mt={8} mb={4}>
+        <Text variant="h3">{`${issue.title} (#${issue.number})`}</Text>
       </Flex>
-      <Text mb={12} variant="caption" color="gray.600">
+      <Text mb={8} variant="caption" color="gray.600">
         {`${
-          issue?.author
-        } opened this issue at ${issue?.createdAt.toDateString()}`}
+          issue.author
+        } opened this issue at ${issue.createdAt.toDateString()}`}
       </Text>
       <Box p={4} borderWidth="1px" borderRadius="lg" borderColor="gray.500">
-        <Markdown content={issue?.body || ''} />
+        <Markdown content={issue.body || ''} />
       </Box>
     </Flex>
+  ) : (
+    <></>
   );
 };
 
