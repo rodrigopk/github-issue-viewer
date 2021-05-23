@@ -10,6 +10,7 @@ export {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
+  Divider,
 } from '@chakra-ui/react';
 
 export { Icons } from './icons';

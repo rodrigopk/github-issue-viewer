@@ -22,6 +22,7 @@ export const IssueCard: React.FC<{ issue: Issue }> = ({ issue }) => {
       justify="space-between"
       borderWidth="1px"
       borderRadius="lg"
+      borderColor="gray.500"
       boxShadow={isHovered ? 'lg' : 'md'}
       onClick={navigateToIssueDetail}
       onMouseEnter={() => setIsHovered(true)}

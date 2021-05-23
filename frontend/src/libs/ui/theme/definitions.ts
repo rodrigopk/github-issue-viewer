@@ -13,6 +13,11 @@ export const definitions = {
   }),
   colors: appColors,
   components: {
+    Divider: {
+      baseStyle: {
+        borderColor: 'gray.600',
+      },
+    },
     Text: {
       variants: {
         h1: {

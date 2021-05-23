@@ -23,6 +23,7 @@ export const RepositoryCard: React.FC<{ repository: Repository }> = ({
       justify="space-between"
       borderWidth="1px"
       borderRadius="lg"
+      borderColor="gray.500"
       boxShadow={isHovered ? 'lg' : 'md'}
       onClick={navigateToRepositoryIssues}
       onMouseEnter={() => setIsHovered(true)}
