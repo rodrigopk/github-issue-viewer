@@ -2,13 +2,14 @@ import React from 'react';
 
 import { Router, Switch, Route, appRoutes } from '../libs/router';
 import { Status } from './status/presentation/pages/status';
-import { Signin } from './authentication/presentation/pages/signin';
-import { AuthenticatedRoute } from './authentication/presentation/components/authenticated_route';
-import { Redirect } from './authentication/presentation/pages/redirect';
-import { AuthenticationContainer } from './authentication/contexts';
+import {
+  Signin,
+  Redirect,
+  AuthenticatedRoute,
+  AuthenticationContainer,
+} from './authentication';
 import { Repositories } from './repositories/presentation/pages/repositories';
-import { Issues } from './issues/presentation/pages/issues';
-import { IssueDetail } from './issues/presentation/pages/issue_detail';
+import { Issues, IssueDetail } from './issues/presentation/pages';
 
 const App: React.FC<{}> = () => (
   <AuthenticationContainer>
