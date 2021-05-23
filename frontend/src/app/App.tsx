@@ -8,11 +8,15 @@ import { Redirect } from './authentication/presentation/pages/redirect';
 import { AuthenticationContainer } from './authentication/contexts';
 import { Repositories } from './repositories/presentation/pages/repositories';
 import { Issues } from './issues/presentation/pages/issues';
+import { IssueDetail } from './issues/presentation/pages/issue_detail';
 
 const App: React.FC<{}> = () => (
   <AuthenticationContainer>
     <Router>
       <Switch>
+        <AuthenticatedRoute path={appRoutes.repositories.issues.detail}>
+          <IssueDetail />
+        </AuthenticatedRoute>
         <AuthenticatedRoute path={appRoutes.repositories.issues.root}>
           <Issues />
         </AuthenticatedRoute>

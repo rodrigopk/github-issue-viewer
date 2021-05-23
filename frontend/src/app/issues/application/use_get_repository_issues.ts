@@ -8,9 +8,9 @@ import { Repository } from '../../repositories/domain';
 
 export const useGetRepositoryIssues = (
   repository: Repository | undefined,
+  page: number,
   facade = new IssuesFacade(),
 ) => {
-  const page = 1;
   const { accessToken } = useContext(AuthenticationContext);
   const { data, error, isLoading, isError } = useQuery(
     `repo/${repository?.id}/issues/${page}`,

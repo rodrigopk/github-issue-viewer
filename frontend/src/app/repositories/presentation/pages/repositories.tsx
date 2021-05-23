@@ -1,76 +1,11 @@
-import React, { useContext, useState } from 'react';
-import { routeBuilders, useHistory } from '../../../../libs/router';
+import React from 'react';
 
-import { Center, Flex, SimpleGrid, Spinner, Text } from '../../../../libs/ui';
+import { Center, Spinner } from '../../../../libs/ui';
 import { ErrorState } from '../../../shared/presentation/layouts';
 import { useListUserRepositories } from '../../application/use_list_user_repositories';
-import { RepositoriesContainer, RepositoriesContext } from '../../contexts';
+import { RepositoriesContainer } from '../../contexts';
 import { Repository } from '../../domain';
-
-export const EmptyState: React.FC<{}> = () => (
-  <Flex
-    justify="center"
-    align="center"
-    direction="column"
-    maxW="sm"
-    borderWidth="1px"
-    borderRadius="lg"
-    p={8}>
-    <Text my={2} variant="h5">
-      Could not find any repositories
-    </Text>
-  </Flex>
-);
-
-const RepositoryCard: React.FC<{ repository: Repository }> = ({
-  repository,
-}) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const history = useHistory();
-
-  const navigateToRepositoryIssues = () => {
-    history.push(routeBuilders.issues.root(`${repository.id}`));
-  };
-
-  return (
-    <Flex
-      p={4}
-      w={{ sm: 'xs', md: 'sm' }}
-      h="175px"
-      direction="column"
-      justify="space-between"
-      borderWidth="1px"
-      borderRadius="lg"
-      boxShadow={isHovered ? 'lg' : 'md'}
-      onClick={navigateToRepositoryIssues}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      cursor="pointer">
-      <Text variant="h5">{repository.name}</Text>
-      <Text variant="caption" color="gray.600">
-        {repository.description}
-      </Text>
-      <Text>Open Issues: {repository.issuesCount}</Text>
-    </Flex>
-  );
-};
-
-const RepositoryList: React.FC<{ repositories: Repository[] }> = ({
-  repositories,
-}) => {
-  const { setRepositories } = useContext(RepositoriesContext);
-
-  if (repositories.length === 0) return <EmptyState />;
-  if (setRepositories) setRepositories(repositories);
-
-  return (
-    <SimpleGrid columns={{ sm: 1, md: 3 }} spacingY={4} spacingX={2} p={2}>
-      {repositories.map((repository) => (
-        <RepositoryCard key={repository.id} repository={repository} />
-      ))}
-    </SimpleGrid>
-  );
-};
+import { RepositoryGrid } from '../layouts';
 
 export const Repositories: React.FC<{}> = () => {
   const { repositories, error, isError, isLoading } = useListUserRepositories();
@@ -91,7 +26,7 @@ export const Repositories: React.FC<{}> = () => {
 
   return (
     <RepositoriesContainer>
-      <RepositoryList repositories={repositories as Repository[]} />
+      <RepositoryGrid repositories={repositories as Repository[]} />
     </RepositoriesContainer>
   );
 };

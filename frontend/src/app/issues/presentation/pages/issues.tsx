@@ -1,75 +1,23 @@
 import React, { useState } from 'react';
 
 import { appRoutes, useHistory, useParams } from '../../../../libs/router';
-import { Center, Flex, SimpleGrid, Spinner, Text } from '../../../../libs/ui';
+import { Center, Spinner } from '../../../../libs/ui';
 import { useGetRepositoryForId } from '../../../repositories/application/use_get_repository_for_id';
 import { RepositoriesContainer } from '../../../repositories/contexts';
+import { Repository } from '../../../repositories/domain';
 import { ErrorState } from '../../../shared/presentation/layouts';
 import { useGetRepositoryIssues } from '../../application/use_get_repository_issues';
 import { Issue } from '../../domain';
-
-export const EmptyState: React.FC<{}> = () => (
-  <Flex
-    justify="center"
-    align="center"
-    direction="column"
-    maxW="sm"
-    borderWidth="1px"
-    borderRadius="lg"
-    p={8}>
-    <Text my={2} variant="h5">
-      Could not find any issues
-    </Text>
-  </Flex>
-);
-
-const IssueCard: React.FC<{ issue: Issue }> = ({ issue }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const navigateToIssueDetail = () => {};
-
-  return (
-    <Flex
-      p={4}
-      w={{ sm: 'xs', md: 'sm' }}
-      h="125px"
-      direction="column"
-      justify="space-between"
-      borderWidth="1px"
-      borderRadius="lg"
-      boxShadow={isHovered ? 'lg' : 'md'}
-      onClick={navigateToIssueDetail}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      cursor="pointer">
-      <Text variant="bold">{issue.title}</Text>
-      <Text variant="caption" color="gray.600">
-        {`#${issue.number} created at ${issue.createdAt.toDateString()} by ${
-          issue.author
-        }`}
-      </Text>
-    </Flex>
-  );
-};
-
-const IssuesList: React.FC<{ issues: Issue[] }> = ({ issues }) => {
-  if (issues.length === 0) return <EmptyState />;
-
-  return (
-    <SimpleGrid columns={{ sm: 1, md: 3 }} spacingY={4} spacingX={2} p={2}>
-      {issues.map((issue) => (
-        <IssueCard key={issue.id} issue={issue} />
-      ))}
-    </SimpleGrid>
-  );
-};
+import { IssuesGrid, Pagination } from '../layouts';
 
 const RepositoryIssues: React.FC<{}> = () => {
-  const { repoId } = useParams<{ repoId: string }>();
   const history = useHistory();
+  const { repoId } = useParams<{ repoId: string }>();
   const { repository } = useGetRepositoryForId(repoId);
+  const [page, setPage] = useState(1);
   const { issues, isLoading, isError, error } = useGetRepositoryIssues(
     repository,
+    page,
   );
 
   if (!repository) {
@@ -90,7 +38,16 @@ const RepositoryIssues: React.FC<{}> = () => {
       </Center>
     );
 
-  return <IssuesList issues={issues as Issue[]} />;
+  return (
+    <>
+      <IssuesGrid issues={issues as Issue[]} />
+      <Pagination
+        numberOfItems={(repository as Repository).issuesCount}
+        page={page}
+        onUpdatePage={setPage}
+      />
+    </>
+  );
 };
 
 export const Issues: React.FC<{}> = () => {

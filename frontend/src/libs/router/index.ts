@@ -21,6 +21,7 @@ export const appRoutes = {
     root: '/repositories',
     issues: {
       root: '/repositories/:repoId/issues',
+      detail: '/repositories/:repoId/issues/:issueId',
     },
   },
 };
@@ -29,5 +30,9 @@ export const routeBuilders = {
   issues: {
     root: (id: string) =>
       appRoutes.repositories.issues.root.replace(/:repoId/i, id),
+    detail: (repoId: string, issueId: string) =>
+      appRoutes.repositories.issues.detail
+        .replace(/:repoId/i, repoId)
+        .replace(/:issueId/i, issueId),
   },
 };
