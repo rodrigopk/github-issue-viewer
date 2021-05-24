@@ -12,6 +12,13 @@ export const Signin: React.FC<{}> = () => {
 
   return (
     <Flex direction="column" height="100vh" justify="center" align="center">
+      <Text
+        mb={16}
+        fontWeight={700}
+        fontSize={{ sm: '2rem', md: '4rem' }}
+        lineHeight={{ sm: '2.125rem', md: '4.125rem' }}>
+        GitHub Issue Viewer
+      </Text>
       <Box
         maxW="sm"
         borderWidth="1px"
