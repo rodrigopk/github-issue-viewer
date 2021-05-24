@@ -28,6 +28,8 @@ export class IssuesFacade {
       },
     });
 
-    return result.data.map((dto) => Issue.create(dto));
+    return result.data
+      .filter((dto) => dto.pull_request === undefined)
+      .map((dto) => Issue.create(dto));
   }
 }

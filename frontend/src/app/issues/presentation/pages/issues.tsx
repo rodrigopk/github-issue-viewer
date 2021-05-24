@@ -47,11 +47,13 @@ const RepositoryIssues: React.FC<{}> = () => {
       <ListBreadcrumbs />
       <Box mt={8}>
         <IssuesGrid issues={issues as Issue[]} />
-        <Pagination
-          numberOfItems={(repository as Repository).issuesCount}
-          page={page}
-          onUpdatePage={setPage}
-        />
+        {issues && issues.length > 0 && (
+          <Pagination
+            numberOfItems={(repository as Repository).issuesCount}
+            page={page}
+            onUpdatePage={setPage}
+          />
+        )}
       </Box>
     </Flex>
   );

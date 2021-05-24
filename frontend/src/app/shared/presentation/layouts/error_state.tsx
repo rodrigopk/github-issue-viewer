@@ -8,6 +8,7 @@ export const ErrorState: React.FC<{ error: Error }> = ({ error }) => (
     maxW="sm"
     borderWidth="1px"
     borderRadius="lg"
+    borderColor="gray.500"
     p={8}>
     <Text my={2} variant="h5">
       Something went wrong

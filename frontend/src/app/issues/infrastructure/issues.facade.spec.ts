@@ -21,7 +21,6 @@ describe('IssuesFacade', () => {
       name: 'Hello-World',
       owner: {
         login: 'octocat',
-        id: 1,
       },
       description: 'This your first repo!',
       open_issues: 1,
@@ -40,7 +39,22 @@ describe('IssuesFacade', () => {
           body: "I'm having a problem with this.",
           user: {
             login: 'octocat',
-            id: 1,
+          },
+          created_at: '2011-04-22T13:33:48Z',
+        },
+        {
+          id: 2,
+          number: 1348,
+          title: 'Pull request',
+          body: 'This is a pull request',
+          user: {
+            login: 'octocat',
+          },
+          pull_request: {
+            url: 'https://api.github.com/repos/octocat/Hello-World/pulls/1347',
+            html_url: 'https://github.com/octocat/Hello-World/pull/1347',
+            diff_url: 'https://github.com/octocat/Hello-World/pull/1347.diff',
+            patch_url: 'https://github.com/octocat/Hello-World/pull/1347.patch',
           },
           created_at: '2011-04-22T13:33:48Z',
         },
@@ -73,9 +87,10 @@ describe('IssuesFacade', () => {
         });
       });
 
-      it('returns the retrieved issues as domain objects', () => {
+      it('returns the retrieved issues as domain objects, ignoring pull requests', () => {
         expect(result.length).toEqual(1);
         expect(result[0]).toBeInstanceOf(Issue);
+        expect(result[0].id).toEqual(1);
       });
     });
 

@@ -6,5 +6,8 @@ export type IssueDTO = {
   user: {
     login: string;
   };
+  pull_request?: {
+    url: string;
+  };
   created_at: string;
 };
