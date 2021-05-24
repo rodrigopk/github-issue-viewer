@@ -1,16 +1,16 @@
 version: '3.3'
 services:
-  development:
+  test:
     container_name: '${POSTGRES_CONTAINER}'
     image: postgres:12.1-alpine
     ports:
-      - 5432:5432
+      - 5433:5432
     environment:
       POSTGRES_DB: '${POSTGRES_DB}'
       POSTGRES_PASSWORD: ''
       POSTGRES_USER: '${POSTGRES_USER}'
     volumes:
-      - /Volumes/github-issue-viewer-development:/var/lib/postgresql/data
+      - /Volumes/github-issue-viewer-test:/var/lib/postgresql/data
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U postgres']
       interval: 10s
@@ -19,4 +19,4 @@ services:
     networks:
       default:
         aliases:
-          - postgres.service.dev
+          - postgres.service.test

@@ -12,7 +12,7 @@ class GithubController < ApplicationController
   end
 
   def github_client
-    Github.new(
+    @github_client ||= Github.new(
       client_id: ENV['GITHUB_CLIENT_ID'],
       client_secret: ENV['GITHUB_CLIENT_SECRET']
     )

@@ -48,6 +48,7 @@ development:
 test:
   adapter: postgresql
   host: localhost
+  port: 5433
   encoding: utf8
   database: github_issue_viewer_test
   pool: 5
