@@ -4,6 +4,8 @@ import { routeBuilders, useHistory } from '../../../../libs/router';
 import { Card } from '../../../shared/presentation/layouts';
 import { Repository } from '../../domain';
 
+const DEFAULT_DESCRIPTION = 'No description';
+
 export const RepositoryCard: React.FC<{ repository: Repository }> = ({
   repository,
 }) => {
@@ -16,7 +18,7 @@ export const RepositoryCard: React.FC<{ repository: Repository }> = ({
   return (
     <Card
       title={repository.name}
-      caption={repository.description}
+      caption={repository.description || DEFAULT_DESCRIPTION}
       onClick={navigateToRepositoryIssues}
     />
   );
