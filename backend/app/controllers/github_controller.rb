@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GithubController < ApplicationController
   def signin
     oauth_token = github_client.get_token(signin_params)

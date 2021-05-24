@@ -1,7 +1,9 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class GithubControllerTest < ActionDispatch::IntegrationTest
-  code = 'github_authorization_code'  
+  code = 'github_authorization_code'
 
   mock_github_client = Minitest::Mock.new
   def mock_github_client.get_token(_code)
