@@ -1,24 +1,45 @@
-# README
+# Github Issue Viewer - Backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Quickstart
 
-Things you may want to cover:
+- Install dependencies
 
-* Ruby version
+```shell
+$ bundle install
+```
 
-* System dependencies
+- Start development database in a docker container (requires docker and docker-compose to be installed)
 
-* Configuration
+```shell
+$ bash scripts/scripts/start-dev-db.sh
+```
 
-* Database creation
+If you prefer to use a local postgres server, you can create the database using the following command:
 
-* Database initialization
+```shell
+$ bundle exec rake db:setup
+```
 
-* How to run the test suite
+- Start the development server
 
-* Services (job queues, cache servers, search engines, etc.)
+```shell
+$ bundle exec rails s
+```
 
-* Deployment instructions
+You are good to go!
 
-* ...
+## Testing
+
+Start test database in a docker container
+
+```shell
+$ bash scripts/scripts/start-test-db.sh
+```
+
+As before, you can also use your local postgres server if you prefer.
+
+To run the tests, just run the following command:
+
+```shell
+$ bundle exec rails test
+```
